@@ -42,20 +42,26 @@ function calculateBMI() {
   const bmi = (weight / Math.pow(height / 100, 2)).toFixed(2);
   result.textContent = "Ваш ИМТ: " + bmi;
 
+  if ((weight == "", "0") || (height == "", "0")) {
+    categoryResult = "🙈";
+    result.style.color = "#ff5e57";
+    result.textContent = "Введите ваши параметры";
+  }
   if (bmi < 18.5) {
-    category = "Недостаточный Вес 😒";
+    categoryResult = "Недостаточный Вес 😒";
     result.style.color = "#ffc44d";
   } else if (bmi >= 18.5 && bmi <= 24.9) {
-    category = "Нормальный Вес 😍";
+    categoryResult = "Нормальный Вес 😍";
     result.style.color = "#0be881";
   } else if (bmi >= 25 && bmi <= 29.9) {
-    category = "Избыточный Вес 😮";
+    categoryResult = "Избыточный Вес 😮";
     result.style.color = "#ff884d";
   } else if (bmi >= 30 && bmi <= 39.9) {
-    category = "Ожирение 😱";
+    categoryResult = "Ожирение 😱";
     result.style.color = "#ff5e57";
   }
-  document.getElementById("category").textContent = category;
+  const category = document.getElementById("category");
+  category.textContent = categoryResult;
 }
 const button = document.getElementById("btn");
 button.addEventListener("click", calculateBMI);
